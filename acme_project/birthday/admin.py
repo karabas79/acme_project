@@ -1,20 +1,10 @@
 from django.contrib import admin
 
-from .models import Birthday
+from .models import Birthday, Tag
 
 
-# class IceCreamInline(admin.StackedInline):
-#     model = IceCream
-#     extra = 0
-
-
-# class CategoryAdmin(admin.ModelAdmin):
-#     inlines = (
-#         IceCreamInline,
-#     )
-#     list_display = (
-#         'title',
-#     )
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('tag',)
 
 
 class BirthdayAdmin(admin.ModelAdmin):
@@ -24,19 +14,12 @@ class BirthdayAdmin(admin.ModelAdmin):
         'birthday',
     )
     list_editable = (
-        'first_name',
         'last_name',
-        'birthday',
     )
-    # search_fields = ('title',)
-    # list_filter = ('category',)
-    # list_display_links = ('title',)
-    # filter_horizontal = ('toppings',)
+    list_display_links = ('first_name',)
 
 
-# admin.site.register(Category, CategoryAdmin)
-admin.site.register(Birthday)
-# admin.site.register(Wrapper)
-# admin.site.register(IceCream, IceCreamAdmin)
+admin.site.register(Birthday, BirthdayAdmin)
+admin.site.register(Tag, TagAdmin)
 
 admin.site.empty_value_display = 'Не задано'
